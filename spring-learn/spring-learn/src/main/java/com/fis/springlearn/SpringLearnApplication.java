@@ -13,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 public class SpringLearnApplication {
 	
@@ -22,6 +24,7 @@ public class SpringLearnApplication {
 		SpringApplication.run(SpringLearnApplication.class, args);
 		displayDate();
 		displayCountry();
+		displayCountries();
 	}
 	
 	static void displayCountry()
@@ -30,6 +33,16 @@ public class SpringLearnApplication {
 		Country country = context.getBean("country", Country.class);
 		LOGGER.debug("Country : {}", country.toString());
 
+	}
+	
+	static void displayCountries()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
+		ArrayList<Country> countries = context.getBean("countryList", ArrayList.class);
+		LOGGER.info("START");
+		for(Country c : countries)
+			LOGGER.debug(c.toString());
+		LOGGER.info("END");
 	}
 	
 	static void displayDate()  {
