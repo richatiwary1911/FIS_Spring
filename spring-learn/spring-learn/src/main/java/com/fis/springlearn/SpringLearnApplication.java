@@ -13,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.fis.springlearn.bean.Employee;
+
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -23,8 +25,16 @@ public class SpringLearnApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLearnApplication.class, args);
 		//displayDate();
-		displayCountry();
+		//displayCountry();
 		//displayCountries();
+		displayEmployee();
+	}
+	
+	static void displayEmployee()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("employee.xml");
+		Employee employee = context.getBean("employee", Employee.class);
+		LOGGER.debug("Employee : {}", employee.toString());
 	}
 	
 	static void displayCountry()
